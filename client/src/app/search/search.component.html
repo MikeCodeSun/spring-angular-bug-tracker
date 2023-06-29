@@ -1,0 +1,47 @@
+<div class="container mt-3">
+  <h3 class="text-center">Search For Project or Bug</h3>
+  <div class="col-md-8 mx-auto mt-3">
+    <div class="input-group w-75 mx-auto">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="search..."
+        [(ngModel)]="searchValue"
+        name="searchValue"
+      />
+      <button class="btn btn-primary" (click)="search()">Search</button>
+    </div>
+    <div class="row mt-3 w-75 mx-auto">
+      <div *ngIf="projects.length > 0" class="col-6">
+        <p class="text-secondary">search result for project</p>
+        <ul class="list-group">
+          <li *ngFor="let project of projects" class="list-group-item">
+            <a routerLink="/project/singleproject/{{ project.id }}">{{
+              project.title
+            }}</a>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="bugs.length > 0" class="col-6">
+        <p class="text-secondary">search result for bug</p>
+
+        <ul class="list-group">
+          <li *ngFor="let bug of bugs" class="list-group-item">
+            <a
+              routerLink="/bug/singlebug/{{ bug.id }}"
+              class="d-flex justify-content-between"
+            >
+              <span>{{ bug.title }}</span>
+              <span
+                [className]="
+                  bug.status === 'SOLVED' ? 'text-success' : 'text-danger'
+                "
+                >{{ bug.status === "SOLVED" ? "O" : "X" }}</span
+              >
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

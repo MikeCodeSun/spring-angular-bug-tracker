@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="col-md-8 mx-auto mt-5">
+    <h1 class="text-info text-center text-capitalize">
+      Wellcom to Bug Tracker
+    </h1>
+    <h2 *ngIf="message" class="text-primary text-center text-capitalize">
+      {{ message }}
+    </h2>
+    <div class="btn-group d-block text-center">
+      <a routerLink="/project/list" class="btn btn-warning">my projects</a>
+      <a routerLink="/bug/list" class="btn btn-danger">my bugs</a>
+      <a routerLink="/search" class="btn btn-info">search</a>
+    </div>
+  </div>
+</div>

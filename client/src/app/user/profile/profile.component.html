@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="card col-md-10 mx-auto mt-5" style="min-width: 600px">
+    <div class="row">
+      <div class="col-4">
+        <img
+          *ngIf="!isUploadImage"
+          class="image"
+          [src]="userProfile.image | authImg | async"
+          alt="user-image"
+        />
+        <div
+          *ngIf="isUploadImage"
+          class="h-100 d-flex flex-column justify-content-center"
+        >
+          <input
+            type="file"
+            name="image"
+            formenctype="multipart/form-data"
+            (change)="chooseFile($event)"
+          />
+          <p [hidden]="!imageErr" class="text-danger text-center mb-0">
+            {{ imageErr }}
+          </p>
+          <div class="btn-group">
+            <button class="btn btn-primary" (click)="uploadFile()">
+              upload
+            </button>
+            <button class="btn btn-danger" (click)="closeUploadImage()">
+              cancel
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div *ngIf="!isEditName" class="card-title d-flex mt-2">
+          <div class="fs-3">Name: &nbsp;</div>
+          <div class="fs-3 text-capitalize">{{ userProfile.name }}</div>
+        </div>
+        <div *ngIf="isEditName" class="card-title d-flex mt-2">
+          <input
+            type="text"
+            class="form-control w-50"
+            name="name"
+            [(ngModel)]="name"
+          />
+          <div class="btn-group">
+            <button class="btn btn-primary" (click)="editName()">save</button>
+            <button class="btn btn-danger" (click)="closeEditName()">
+              cancel
+            </button>
+          </div>
+        </div>
+        <small class="text-danger" *ngIf="nameErr">{{ nameErr }}</small>
+        <div class="card-text d-flex">
+          <div class="fs-4">Email: &nbsp;</div>
+          <div class="fs-4">{{ userProfile.email }}</div>
+        </div>
+        <div class="card-text d-flex">
+          <div class="fs-4">Created At: &nbsp;</div>
+          <div class="fs-4">{{ userProfile.createdAt }}</div>
+        </div>
+        <div class="card-text btn-group my-3">
+          <button
+            *ngIf="!isUploadImage"
+            class="btn btn-primary"
+            (click)="showUploadImage()"
+          >
+            change image
+          </button>
+          <button
+            *ngIf="isUploadImage"
+            class="btn btn-danger"
+            (click)="closeUploadImage()"
+          >
+            cancel
+          </button>
+          <button
+            *ngIf="!isEditName"
+            class="btn btn-warning"
+            (click)="showEditName()"
+          >
+            change name
+          </button>
+          <button
+            *ngIf="isEditName"
+            class="btn btn-danger"
+            (click)="closeEditName()"
+          >
+            cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+  <app-loading [loading]="loading"></app-loading>
+  <div *ngIf="bugs.length > 0" class="row">
+    <ul class="list-group col-md-8 mx-auto mt-5">
+      <li *ngFor="let bug of bugs" class="list-group-item">
+        <a
+          routerLink="/bug/singlebug/{{ bug.id }}"
+          class="d-flex justify-content-between"
+        >
+          <span>{{ bug.title }}</span>
+          <span
+            [className]="
+              bug.status === 'SOLVED' ? 'text-success' : 'text-danger'
+            "
+            >{{ bug.status === "SOLVED" ? "O" : "X" }}</span
+          >
+        </a>
+      </li>
+    </ul>
+    <!-- page -->
+
+    <ul class="nav nav-pills col-md-8 mx-auto mt-1">
+      <li *ngFor="let page of totalPageArray" class="nav-item">
+        <a
+          class="nav-link cursor"
+          [ngClass]="{ active: page === currentPage }"
+          aria-current="page"
+          (click)="changePage(page)"
+        >
+          {{ page }}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="bugs.length === 0">
+    <h1 class="text-center">No Bugs</h1>
+  </div>
+</div>

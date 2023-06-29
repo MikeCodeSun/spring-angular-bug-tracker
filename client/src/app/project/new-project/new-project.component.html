@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto mt-5">
+      <h3 class="text-center text-capitalize">add new project</h3>
+      <form (submit)="addNewProject()">
+        <div class="mb-3">
+          <label class="form-label">title:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="title"
+            [(ngModel)]="title"
+          />
+        </div>
+        <div [hidden]="!projectErrMsg.title" class="alert alert-danger">
+          {{ projectErrMsg.title }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">link:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="link"
+            [(ngModel)]="link"
+          />
+          <div [hidden]="!projectErrMsg.link" class="alert alert-danger">
+            {{ projectErrMsg.link }}
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">description:</label>
+          <textarea
+            class="form-control"
+            name="description"
+            rows="5"
+            [(ngModel)]="description"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

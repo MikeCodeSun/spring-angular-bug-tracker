@@ -1,0 +1,62 @@
+<nav *ngIf="isUserLog" class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">Bug Tracker</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/project/list"
+            >Project</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/bug/list">Bug</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/search">Search</a>
+        </li>
+      </ul>
+      <ul *ngIf="!isUserLog" class="d-flex navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="register">Register</a>
+        </li>
+      </ul>
+      <ul *ngIf="isUserLog" class="d-flex navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link text-capitalize"
+            routerLink="/user/profile/{{ userInfo.id }}"
+            >{{ userInfo.name }}</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cursor" (click)="logout()">logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="col-md-8 mx-auto">
+  <a
+    class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover cursor"
+    (click)="goBack()"
+    >go back</a
+  >
+</div>
+<router-outlet></router-outlet>

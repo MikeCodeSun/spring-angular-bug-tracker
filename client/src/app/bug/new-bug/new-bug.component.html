@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto mt-5">
+      <h3 class="text-center text-capitalize">add new Bug</h3>
+      <form (submit)="addNewBug()">
+        <div class="mb-3">
+          <label class="form-label">title:</label>
+          <input
+            class="form-control"
+            type="text"
+            name="title"
+            [(ngModel)]="title"
+          />
+        </div>
+        <div [hidden]="!titleErr" class="alert alert-danger">
+          {{ titleErr }}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">description:</label>
+          <textarea
+            class="form-control"
+            name="description"
+            rows="5"
+            [(ngModel)]="description"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">solution:</label>
+          <textarea
+            class="form-control"
+            name="solution"
+            rows="5"
+            [(ngModel)]="solution"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <select
+            class="form-control"
+            name="status"
+            (change)="onChange($event)"
+          >
+            <option value="UNSOLVED">UnSolved</option>
+            <option value="SOLVED">Solved</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

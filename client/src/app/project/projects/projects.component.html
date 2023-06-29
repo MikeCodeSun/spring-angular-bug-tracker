@@ -1,0 +1,35 @@
+<div class="container">
+  <app-loading [loading]="loading"></app-loading>
+  <div class="row">
+    <div class="col-md-8 mt-5 mx-auto">
+      <a class="btn btn-primary float-end" routerLink="/project/new"
+        >add new project</a
+      >
+    </div>
+  </div>
+  <div *ngIf="projects.length > 0" class="row">
+    <ul class="list-group col-md-8 mx-auto">
+      <li *ngFor="let project of projects" class="list-group-item">
+        <a routerLink="/project/singleproject/{{ project.id }}">{{
+          project.title
+        }}</a>
+      </li>
+    </ul>
+    <ul class="nav nav-pills col-md-8 mx-auto mt-1">
+      <li *ngFor="let page of totalPage" class="nav-item">
+        <a
+          class="nav-link cursor"
+          [ngClass]="{ active: page === currentPage }"
+          aria-current="page"
+          (click)="changPage(page)"
+        >
+          {{ page }}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="projects.length === 0">
+    <h1 class="text-center">No Projects</h1>
+  </div>
+</div>
